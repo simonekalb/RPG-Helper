@@ -9,8 +9,8 @@ const int defaultColumnHeight = 40;
 #ifdef _WIN32
 #include <Windows.h>
 
-void clrscr()
-{
+void clrscr() {
+
 	HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD coordScreen = { 0, 0 };    // home for the cursor 
 	DWORD cCharsWritten;
@@ -45,12 +45,11 @@ void clrscr()
 
 	// Set the buffer's attributes accordingly.
 
-	if (!FillConsoleOutputAttribute(hStdout,         // Handle to console screen buffer 
-		csbi.wAttributes, // Character attributes to use
-		dwConSize,        // Number of cells to set attribute 
-		coordScreen,      // Coordinates of first cell 
-		&cCharsWritten)) // Receive number of characters written
-	{
+	if (!FillConsoleOutputAttribute(hStdout,  // Handle to console screen buffer 
+		csbi.wAttributes,	  // Character attributes to use
+		dwConSize,			 // Number of cells to set attribute 
+		coordScreen,		// Coordinates of first cell 
+		&cCharsWritten)) { // Receive number of characters written 
 		return;
 	}
 
@@ -70,7 +69,6 @@ int getColumnWidth() {
 
 #else
 
-#include <stdio.h>
 #define clrscr() printf("\e[1;1H\e[2J")
 
 int getColumnWidth() {
